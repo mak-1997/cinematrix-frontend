@@ -36,7 +36,7 @@ const Home = () => {
     <Box>
       <Box >
         <Text fontSize={"2xl"} fontStyle={"italic"} as="b"  >Movies</Text>
-        <Grid templateColumns={"repeat(4,1fr)"}>
+        <Grid templateColumns={"repeat(3,1fr)"}>
           {movie_data?.map((elem) => {
             return <Movie_Card key={elem._id["$oid"]} elem={elem} />;
           })}
@@ -45,7 +45,7 @@ const Home = () => {
       <hr/>
       <Box >
         <Text fontSize={"2xl"} fontStyle={"italic"} as="b"  >Events</Text>
-        <Grid templateColumns={"repeat(4,1fr)"}>
+        <Grid templateColumns={"repeat(3,1fr)"}>
           {event_data?.map((elem) => {
             return <Event_Card key={elem._id["$oid"]} elem={elem} />;
           })}

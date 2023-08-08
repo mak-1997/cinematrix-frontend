@@ -10,6 +10,7 @@ import {
   Tooltip,
   Button,
   Text,
+  Container,
 } from "@chakra-ui/react";
 import React from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
@@ -21,7 +22,7 @@ import { Create_Show_Modal } from "./Create_Show_Modal";
 
 const data = {
   isNew: true,
-  imageURL:
+  image_url:
     "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80",
   name: "Wayfarer Classic",
   price: 4.5,
@@ -58,16 +59,14 @@ function Rating({ rating, numReviews }) {
 }
 
 function Movie_Card({ elem }) {
-  const { c1,c2, c3, c4,c5, c6 } = React.useContext(ColorContext);
-  const {admin_flag} = React.useContext(AuthContext);
+  const { c1, c2, c3, c4, c5, c6 } = React.useContext(ColorContext);
+  const { admin_flag } = React.useContext(AuthContext);
 
   console.log(elem);
   const navigate = useNavigate();
   const handleClick = (elem) => {
-    if(admin_flag){
-
-    }
-    else{
+    if (admin_flag) {
+    } else {
       navigate(`/related_movie_shows/${elem._id["$oid"]}`);
     }
   };
@@ -81,11 +80,14 @@ function Movie_Card({ elem }) {
         shadow="lg"
         position="relative"
       >
-        <Image
-          src={data.imageURL}
-          alt={`Picture of ${elem.movie_name}`}
-          roundedTop="lg"
-        />
+        <Container width="100%" overflow="hidden" display="flex" justifyContent={"center"} >
+          <Image
+           h="400px"
+            src={elem.image_url}
+            alt={`Picture of ${elem.movie_name}`}
+            roundedTop="lg"
+          />
+        </Container>
 
         <Box p="6">
           <Flex mt="1" justifyContent="space-between" alignContent="center">
@@ -107,7 +109,7 @@ function Movie_Card({ elem }) {
               {`${elem.duration} Hr`}
             </Box>
           </Flex>
-          <Flex mt="1" justifyContent="space-between" alignContent="center">
+          <Flex mt="1" justifyContent="space-between" gap="5" alignContent="center">
             <Flex gap="2" alignItems={"center"}>
               {" "}
               {elem.language.map((lang) => (
@@ -136,7 +138,7 @@ function Movie_Card({ elem }) {
                 colorScheme="green"
                 onClick={() => handleClick(elem)}
               >
-               { admin_flag ? <Create_Show_Modal elem={elem} /> : "Shows"}
+                {admin_flag ? <Create_Show_Modal elem={elem} /> : "Shows"}
               </Button>
             </Tooltip>
           </Flex>

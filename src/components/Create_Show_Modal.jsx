@@ -100,7 +100,7 @@ export function Create_Show_Modal({ elem }) {
   return (
     <>
       <Box onClick={onOpen} colorScheme="green">
-        Create a new show
+        Create a show
       </Box>
 
       <Modal isOpen={isOpen} onClose={onClose}>

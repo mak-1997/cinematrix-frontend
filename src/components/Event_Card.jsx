@@ -10,19 +10,20 @@ import {
   Tooltip,
   Button,
   Text,
+  Container,
 } from "@chakra-ui/react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { ColorContext } from "../contexts/ColorContextProvider";
 import { AuthContext } from "../contexts/AuthContextProvider";
-import {Create_Show_Modal} from './Create_Show_Modal'
+import { Create_Show_Modal } from "./Create_Show_Modal";
 
 import React from "react";
 
 const data = {
   isNew: true,
-  imageURL:
+  image_url:
     "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80",
   name: "Wayfarer Classic",
   price: 4.5,
@@ -66,7 +67,6 @@ function Event_Card({ elem }) {
   const navigate = useNavigate();
   const handleClick = (elem) => {
     if (admin_flag) {
-
     } else {
       navigate(`/related_event_shows/${elem._id["$oid"]}`);
     }
@@ -81,11 +81,14 @@ function Event_Card({ elem }) {
         shadow="lg"
         position="relative"
       >
-        <Image
-          src={data.imageURL}
-          alt={`Picture of ${elem.event_name}`}
-          roundedTop="lg"
-        />
+        <Container width="100%" overflow="hidden" display="flex" justifyContent={"center"} >
+          <Image
+           h="400px"
+            src={elem.image_url}
+            alt={`Picture of ${elem.event_name}`}
+            roundedTop="lg"
+          />
+        </Container>
 
         <Box p="6">
           <Flex mt="1" justifyContent="space-between" alignContent="center">
@@ -136,7 +139,7 @@ function Event_Card({ elem }) {
                 colorScheme="green"
                 onClick={() => handleClick(elem)}
               >
-                { admin_flag ? <Create_Show_Modal elem={elem} /> : "Shows"}
+                {admin_flag ? <Create_Show_Modal elem={elem} /> : "Shows"}
               </Button>
             </Tooltip>
           </Flex>

@@ -10,6 +10,7 @@ import {
   Tooltip,
   Button,
   Text,
+  Container,
 } from "@chakra-ui/react";
 import React from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
@@ -20,7 +21,7 @@ import { Book_Show_Modal } from "./Book_Show_Modal";
 
 const data = {
   isNew: true,
-  imageURL:
+  image_url:
     "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=4600&q=80",
   name: "Wayfarer Classic",
   price: 4.5,
@@ -47,11 +48,14 @@ function Shows_Card({ elem }) {
         shadow="lg"
         position="relative"
       >
-        <Image
-          src={data.imageURL}
-          alt={`Picture of ${elem.movie_name}`}
-          roundedTop="lg"
-        />
+        <Container width="100%" overflow="hidden" display="flex" justifyContent={"center"} >
+          <Image
+           h="400px"
+            src={elem.image_url}
+            alt={`Picture of ${elem.event_name}`}
+            roundedTop="lg"
+          />
+        </Container>
 
         <Box p="6">
           <Flex mt="1" justifyContent="space-between" alignContent="center">
@@ -78,13 +82,25 @@ function Shows_Card({ elem }) {
               {`${elem.duration} Hr`}
             </Box>
           </Flex>
-          <Flex justifyContent="space-between" alignContent="center" fontSize={"xl"} >
+          <Flex
+            justifyContent="space-between"
+            alignContent="center"
+            fontSize={"xl"}
+          >
             <Text>From : {elem.start_time} </Text>
             <Text>To : {elem.end_time} </Text>
           </Flex>
-          <Flex flexDir={"column"} justifyContent="space-between" alignContent="center" fontSize={"xl"} textAlign={"left"} >
+          <Flex
+            flexDir={"column"}
+            justifyContent="space-between"
+            alignContent="center"
+            fontSize={"xl"}
+            textAlign={"left"}
+          >
             <Text>Total seats : {elem.total_seats} </Text>
-            <Text>Available seats : {elem.total_seats - elem.booked_seats} </Text>
+            <Text>
+              Available seats : {elem.total_seats - elem.booked_seats}{" "}
+            </Text>
             <Text>Date : {elem.date}</Text>
           </Flex>
           <Flex mt="1" justifyContent="space-between" alignContent="center">

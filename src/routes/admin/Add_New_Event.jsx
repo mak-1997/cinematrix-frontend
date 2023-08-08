@@ -83,7 +83,7 @@ const Add_New_Event = () => {
         borderRadius={"5"}
       >
         <Text textAlign={"center"} fontSize={"3xl"} as="b" color={c6}>
-          Add A New Movie
+          Add A New Event
         </Text>
         <Input
           required={true}
